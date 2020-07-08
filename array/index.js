@@ -3,7 +3,42 @@
  * concat 函数 不检测空数组，不改变原数组
  * 返回一个新的数组
  */
-Array.prototype.MyConcat = function(...arr) {}
+Array.prototype.myConcat = function() {
+    if(this === null || this === undefined) {
+        console.log('类型错误');
+        return;
+    }
+    let arr = [], type = Object.prototype.toString.call(this)
+    switch (type) {
+        case '[object String]':
+            arr.push(new String(this));
+            break;
+        case '[object Number]':
+            arr.push(new Number(this))
+            break
+        case '[object Boolean]':
+            arr.push(new Boolean(this));
+            break
+        case '[object Function]':
+            arr.push(new Function(this));
+            break;
+        case '[object Arrary]':
+            arr = this.slice(0);
+            break;
+        default:
+            console.log('类型错误')
+            break 
+    }
+    let arg = Array.prototype.slice.call(arguments)
+    arg.forEach(item => {
+        if(Array.isArray(item)) {
+            arr.push(...item)
+        } else {
+            arr.push(item)
+        }
+    })
+    return arr
+}
 
 /**
  * @param {target} 目标索引
@@ -39,7 +74,7 @@ Array.prototype.myEvery = function (callback) {
  * 不改变愿数组
  * 返回一个新的数组
  */
-Array.prototype.MyFilter = function(callback) {
+Array.prototype.myFilter = function(callback) {
     if(!Array.isArray(this) || this.length == 0 || typeof callback != 'function') {
         return [];
     } else {
@@ -51,6 +86,42 @@ Array.prototype.MyFilter = function(callback) {
             }
         }
         return result;
+    }
+}
+/**
+ * from 将有长度的对象转换成数组
+ */
+Array.myFrom = function(target, callback) {
+    if(callback && !callback instanceof Function) {
+        console.log('回调函数错误');
+        return;
+    }
+    if(!this.length) {
+        return [];
+    } else {
+        let result = []
+        let type = Object.prototype.toString.call(target)
+        console.log(type)
+        switch (type) {
+            case '[object String]':
+                result = target.split('');
+                console.log(result)
+                break;
+            case '[object Array]':
+                result = [...target];
+                break;
+            default:
+                break;
+        }
+        if (callback) {
+            let last = [];
+            result.forEach(item => {
+                last.push(callback(item))
+            })
+            return last
+        } else {
+            return result
+        }
     }
 }
 
