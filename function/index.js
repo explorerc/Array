@@ -4,9 +4,10 @@ Function.prototype.myCall = function(context) {
         return;
     }
     let arg = [...arguments].splice(1);
-    context.fn = this
-    let result = context.fn(...arg)
-    delete context.fn
+    context.fn = this;
+    console.log(arg);
+    let result = context.fn(...arg);
+    delete context.fn;
     return result;
 }
 

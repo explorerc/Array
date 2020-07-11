@@ -101,7 +101,6 @@ Array.myFrom = function(target, callback) {
     } else {
         let result = []
         let type = Object.prototype.toString.call(target)
-        console.log(type)
         switch (type) {
             case '[object String]':
                 result = target.split('');

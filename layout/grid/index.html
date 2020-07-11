@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .parent {
+            width: 400px;
+            height: 400px;
+            background-color: black;
+            margin: 20px;
+            padding: 10px;
+        }
+        .child {
+            background-color: white;
+            margin: 2px;
+        }
+    </style>
+    
+</head>
+<body>
+    <section>
+        <!-- 元素上下左右居中显示 -->
+        <style>
+            .ex1 {
+                display: grid;
+                place-items: center;
+            }
+        </style>
+        <div class="parent ex1">
+            <div class="child" contenteditable>测试案例1</div>
+        </div>
+    </section>
+
+    <section>
+        <!-- 三栏布局，根据父亲盒子可换行显示 -->
+        <style>
+            .ex2 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .ex2 .child {
+                /* 150表示最小宽度 */
+                /* flex: 1 1 150px;  */
+                /* 不自适应 宽度150 */
+                flex: 0 1 150px; 
+            }
+        </style>
+        <div class="parent ex2">
+            <div class="child box1">1</div>
+            <div class="child box2">2</div>
+            <div class="child box3">3</div>
+        </div>
+    </section>
+    <section>
+        <!-- flex 实现两栏布局，右侧自适应 -->
+        <style>
+            .ex3 {
+                display: flex;
+            }
+            .ex3 .left {
+                width: 200px;
+            }
+            .ex3 .right {
+                flex: 1;
+            }
+        </style>
+        <div class="parent ex3">
+            <div class="child left"contenteditable>经典两栏布局</div>
+            <div class="child right" contenteditable>测试案例1</div>
+        </div>
+    </section>
+    <section>
+        <!-- grid 实现两栏布局 -->
+        <style>
+            .ex4 {
+                display: grid;
+                grid-template-columns: minmax(150px, 20%) 1fr;
+            }
+        </style>
+        <div class="parent ex4">
+            <div class="child left"></div>
+            <div class="child right"></div>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex5 {
+                display: grid;
+                grid-template-rows: 150px 1fr 150px;
+            }
+        </style>
+        <div class="parent ex5">
+            <div class="child header"></div>
+            <div class="child content"></div>
+            <div class="child footer"></div>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex6 {
+                display: grid;
+                grid-template: auto 1fr auto / auto 1fr auto;
+            }
+            .ex6 .header {
+                /* start / end */
+                grid-column: 1 / 4; 
+            }
+            .ex6 .footer {
+                grid-column: 1 / 4;
+            }
+        </style>
+        <div class="parent ex6">
+            <header class="child header">header</header>
+            <div class="child content-left">content-left</div>
+            <div class="child content-main" contenteditable>content-main</div>
+            <div class="child content-right">content-right</div>
+            <footer class="child footer">footer</footer>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex7 {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+            }
+            .ex7 .box1 {
+                grid-column: 1 / 13;
+            }
+            .ex7 .box2 {
+                grid-column: 2 / 5;
+            }
+            .ex7 .box3 {
+                grid-column: 4 / 7;
+            }
+            .ex7 .box4 {
+                grid-column: 6 / 9;
+            }
+        </style>
+        <div class="parent ex7">
+            <div class="child box1"></div>
+            <div class="child box2"></div>
+            <div class="child box3"></div>
+            <div class="child box4"></div>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex8 {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        </style>
+        <div class="parent ex8">
+            <div class="child box1"></div>
+            <div class="child box2"></div>
+            <div class="child box3"></div>
+            <div class="child box4"></div>
+        </div>
+    </section>
+    <script src="./index.js"></script>
+</body>
+</html>
