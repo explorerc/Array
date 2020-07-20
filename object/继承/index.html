@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        /* 
+         方式一借助构造函数继承
+         [缺点]：只实现了部分继承，无法继承parent1的原型链
+        */
+       function Parent1() {
+           this.name = 'parent1'
+       }
+       function Child1() {
+           Parent1.call(this);
+           this,typr = 'child1'
+       }
+    </script>
+    <script>
+        /* 
+         方式二借助原型链继承
+         [缺点]：原型链属性公用
+        */
+       function Parent2() {
+           this.name = 'parent1'
+       }
+       function Child2 () {
+           this,typr = 'child1'
+       }
+       Child2.prototype = new Parent2()
+    </script>
+    <script>
+        /* 
+         方式三 组合方式
+         [缺点]：Parent3执行了两次
+        */
+       function Parent3() {
+           this.name = 'parent1'
+       }
+       function Child3() {
+           Parent3.call(this)
+           this,typr = 'child1'
+       }
+       Child3.prototype = new Parent3()
+    </script>
+    <script>
+        /* 
+         方式四 组合方式继承优化一
+        */
+       function Parent4() {
+           this.name = 'parent1'
+       }
+       function Child4() {
+           Parent4.call(this)
+           this,typr = 'child1'
+       }
+       Child4.prototype = Parent4.prototype
+        // 缺点,constructor指向一个，无法区分
+        var s5 = new Child4();
+        console.log(s5 instanceof Child4); // true
+        console.log(s5 instanceof Parent4); // true    
+    </script>
+    <script>
+        /* 
+         方式五 组合方式继承优化一
+        */
+       function Parent5() {
+           this.name = 'parent1'
+       }
+       function Child5() {
+           this,typr = 'child1'
+       }
+       Child5.prototype = Object.create(Parent5.prototype);
+       Child5.prototype.constructor = Child5  
+    </script>
+</body>
+</html>

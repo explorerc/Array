@@ -11,7 +11,7 @@ Function.prototype.myCall = function(context) {
     return result;
 }
 
-Function.prototype.myApplt = function(context) {
+Function.prototype.myApply = function(context) {
     if(typeof this !== 'function') {
         console.log('this 类型错误');
         return;

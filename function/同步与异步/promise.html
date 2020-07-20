@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <div>
+        promise的特性
+        <ul>
+            <li>promise对象不受外界影响。三种状态：padding、resolved（fullfilled）、rejected</li>
+            <li>状态一旦改变，就不会再改变</li>
+        </ul>
+    </div>
+    <script>
+        function MyPromise(constructor) {
+            let self = this
+            self.status = 'padding'
+            self.value = undefined;
+            self.reason = undefined;
+            function resolve(value) {
+                if(self.status == 'padding') {
+                    self.status = 'resolved';
+                    self.value = value
+                }
+            }
+            function reject(reason) {
+                if(self.status == 'padding') {
+                    self.status = 'rejected';
+                    self.reason = reason
+                }
+            }
+            try {
+                constructor(resolve, reject)
+            } catch (e) {
+                reject(e)
+            }
+
+        }
+        MyPromise.prototype.then = function(onFullFilled, onRejected) {
+            let self = this;
+            switch(self.status) {
+                case 'resolved':
+                    onFullFilled(self.value);
+                    break;
+                case 'rejected':
+                    onRejected(self.reason);
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
