@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超出一行隐藏</title>
+    <style>
+        .text {
+            width: 300px;
+            line-height: 20px;
+            /* overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis; */
+        }
+    </style>
+</head>
+<body>
+    <div id="text" class="text">
+        超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏超出一行我要被隐藏
+    </div>
+    <script>
+        function getCss(dom) {
+            if(window.getComputedStyle) {
+                return window.getComputedStyle(dom)
+            } else {
+                return dom.currentStyle
+            }
+        }
+        function overflow(id, row, str){
+            let textNode = document.getElementById(id)
+            console.log(textNode);
+            let style = getCss(textNode);
+            let lineHeight = style['line-height'];
+            console.log(lineHeight);
+            let height = row * parseInt(lineHeight); // 需求展示高度；
+            console.log(lineHeight, height);
+            textNode.innerHTML = str
+            let hight = str.lenght, low = 0, middle;
+            while(text.offsetHeight > height) {
+                middle = (hight + low) / 2
+                textNode.innerHTML = str.substring(0, middle) + '…';
+                if(text.offsetHeight < height) {
+                    textNode.innerHTML = str.substring(0, height) + '…'
+                    low = middle
+                } else {
+                    hight = middle - 1;
+                }
+                
+            }
+        }
+        overflow('text', 2, 'JS处理的基本思路是获取到文本中设置的line-height属性。在获取到相关属性后，根据传入的显示行数来计算整个文本的高度。然后根据文本内容撑开的高度是否大于计算得到的文本高度来判断是否需要溢出处理。')
+    </script>
+</body>
+</html>

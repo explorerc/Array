@@ -26,3 +26,19 @@ Function.prototype.myApply = function(context) {
     delete context.fn
     return result;
 }
+Function.prototype.myBind = function(context = window, ...args) {
+    if(typeof this !== 'function') {
+        console.log('类型错误')
+        return;
+    }
+    context.fn = this
+    let bound = function() {
+        context.fn = this instanceof context.fn ? this : window
+        let arg = [...args].concat([...arguments])
+        let result = context.fn(...arg);
+        delete context.fn
+        return result
+    }
+    bound.prototype = new this()
+    return bound
+}

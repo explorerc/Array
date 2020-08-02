@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>斐波拉切数列</title>
+</head>
+<body>
+    <script>
+        // 求第n项值
+        function fabonacci (n, map = {}){
+            if(n == 1 || n == 2) return 1
+            if(map[n]) map[n]
+            let data = fabonacci(n -1, map) + fabonacci(n - 2, map)
+            map[n] = data
+            return data
+        }
+        console.log('求第n项值==========', fabonacci(10))
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .parent {
+            
+            width: 400px;
+            height: 400px;
+            background-color: black;
+            margin: 5px;
+        }
+        .child {
+            margin: 2px;
+            background-color: #fff;
+        }
+        .small {
+            border: 1px solid coral;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <style>
+            .ex1 {
+                display: flex;
+            }
+            .ex1 .child {
+                flex: 1;
+            }
+            .ex1 .box1, .ex1 .box3 {
+                display: flex;
+                flex-direction: column;
+            } 
+            .ex1 .small {
+                flex: 1;
+                
+            }
+        </style>
+        <div class="parent ex1">
+            <div class="child box1">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+            <div class="child box2">弹性布局</div>
+            <div class="child box3">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex2 .child {
+                float: left;
+                height: calc(100% - 4px);
+                width: calc((100% - 12px) / 3);
+            }
+            .ex2 .small {
+                height: calc(100% / 3);
+                box-sizing: border-box;
+            }
+        </style>
+        <div class="parent ex2">
+            <div class="child box1">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+            <div class="child box2">float布局</div>
+            <div class="child box3">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+        </div>
+    </section>
+        
+    <section>
+        <style>
+            .ex3 {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .ex3 .small {
+                height: calc(100% / 3);
+                box-sizing: border-box;
+            }
+        </style>
+        <div class="parent ex3">
+            <div class="child box1">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+            <div class="child box2">grid布局一</div>
+            <div class="child box3">
+                <div class="small"></div>
+                <div class="small"></div>
+                <div class="small"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <style>
+            .ex4 {
+                display: grid;
+                grid-template-rows: repeat(3, 1fr);
+            }
+            .ex4 .box4 {
+                grid-row: 1 / 4;
+            }
+        </style>
+        <div class="parent ex4">
+                <div class="child box1"></div>
+                <div class="child box2"></div>
+                <div class="child box3"></div>
+                <div class="child box4"></div>
+                <div class="child box5"></div>
+                <div class="child box6"></div>
+                <div class="child box7"></div>
+        </div>
+    </section>
+
+    <script src="../grid/index.js"></script>
+</body>
+</html>

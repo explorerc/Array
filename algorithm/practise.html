@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法100</title>
+</head>
+<body>
+    <script>
+        // mySetInterval
+        function mySetInterval(fn, a, b) {
+            let time = [], interval
+            let timeout = () => {
+                interval = setTimeout(() => {
+                    fn()
+                    if(time.length) timeout()
+                }, time.shift())
+            }
+            this.start = () => {
+                time = [a, a + b, a + 2 * b ]
+                timeout()
+            }
+            this.myClear = () => {
+                clearTimeout(interval)
+            }
+        }
+        let testInterval = new mySetInterval(() => {console.log('测试1')}, 1000, 11000);
+        
+
+    </script>
+</body>
+</html>

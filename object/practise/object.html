@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作符</title>
+</head>
+<body>
+    <script>
+        // 操作符的优先级
+        let a = {n: 1};
+        let b = a;
+        a.x = a = {n: 2}
+        console.log('操作符的优先级1===========',a, a.x);
+        console.log('操作符的优先级1===========',b, b.x)
+
+        // 对象与数组
+        let obj2 = {
+            '2': 3,
+            '3': 4,
+            length: 2,
+            splice: Array.prototype.splice,
+            push: Array.prototype.push
+        }
+        obj2.push('测试1');
+        obj2.push('测试2');
+        console.log('对象与数组===========',obj2)
+    </script>
+    
+
+</body>
+</html>

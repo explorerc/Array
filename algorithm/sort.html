@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,9,10,56,3,435,102,10,12]
+        /*
+        冒泡排序
+        思想：相邻两比较
+        */
+        function bubbleSort(arr) {
+            let end = arr.length - 1;
+            for(let i = 0; i <= end; i++) {
+                for(let j = 0; j < end - i; j++) {
+                    if(arr[j] > arr[j+1]) {
+                        [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+                    }
+                }
+            }
+            return arr
+        }
+        console.log('冒泡排序==============', bubbleSort(arr))
+        /*
+        选择排序
+        某一位与后面的比较
+        */
+        function selctionSort(arr) {
+            let end = arr.length -1;
+            for(let i = 0; i < end; i++) {
+                for(let j = i+1; j <= end; j++) {
+                    if(arr[i] > arr[j]){
+                        [arr[i], arr[j]] = [arr[j], arr[i]]
+                    }
+                }
+            }
+            return arr
+        }
+        console.log('选择排序==============', selctionSort(arr))
+
+        /*
+        插入排序
+        思想：假设前面i位已排好顺序
+        */
+
+        function insertionSort(arr) {
+            let end = arr.length - 1
+            for(let i = 0; i < end; i++) {
+                for(let j = i + 1; j > 0; j++) {
+                    if(arr[j] > arr[j - 1]) {
+                        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+                    }
+                }
+            }
+            return arr
+        }
+        console.log('插入排序==============', selctionSort(arr))
+
+        /*
+        希尔排序
+        思想：划分小块儿进行比较
+        */
+        function shellSort(arr) {
+            let incre = arr.length; // 比较的跨度
+            while(incre > 1) {
+                incre = Math.ceil(incre / 2);
+                for(let i = 0; i + incre < arr.length; i++) {
+                    if(arr[i + incre] && arr[i] > arr[i + incre]) {
+                        [arr[i], arr[i + incre]] = [arr[j - 1], arr[j]]
+                    }
+                }
+            }
+            return arr
+        }
+        console.log('希尔排序==============', shellSort(arr))
+
+        /*
+        快速排序
+        思想：选一个数为基点
+        */
+       function quickSort(arr) {
+           let len = arr.length
+           if(arr.length < 2) return arr
+           let base = arr[0], leftArr = [], rightArr = []
+           for(let i = 1; i < len; i++) {
+               let item = arr[i]
+               if(item > base) {
+                   rightArr.push(item)
+               } else {
+                   leftArr.push(item)
+               }
+           }
+           return quickSort(leftArr).concat([base], quickSort(rightArr))
+       }
+       console.log('快速排序==============', quickSort(arr))
+        
+    </script>
+</body>
+</html>

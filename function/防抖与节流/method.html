@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖与节流</title>
+</head>
+<body>
+    <script>
+        // 防抖，在事件被出发n秒后再执行回调，若在者事件内又被出发，则重新计算时间
+        function debounce(fn, time) {
+            let timer = null
+            return function() {
+                let context = this, args = arguments;
+                if(timer) {
+                    clearTimeout(timer);
+                    timer = null
+                }
+                timer = setTimeout(() => {
+                    fn.apply(context, args)
+                }, timer);
+            }
+        }
+        // 节流，事件在指定时间内只会被出发一次
+        function throttle (fn, delay) {
+            let preTime = Date.now();
+            return function(){
+                let context = this, args = arguments, nowTime = Date.now();
+                if(nowTime - preTime >- delay) {
+                    preTime = Date.now();
+                    return fn.apply(context, args)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

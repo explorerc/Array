@@ -14,9 +14,12 @@
        function Parent1() {
            this.name = 'parent1'
        }
+       Parent1.prototype.walk = function() {
+           alert('parent walk')
+       }
        function Child1() {
            Parent1.call(this);
-           this,typr = 'child1'
+           this.typr = 'child1'
        }
     </script>
     <script>
@@ -28,7 +31,7 @@
            this.name = 'parent1'
        }
        function Child2 () {
-           this,typr = 'child1'
+           this.type = 'child1'
        }
        Child2.prototype = new Parent2()
     </script>
@@ -42,7 +45,7 @@
        }
        function Child3() {
            Parent3.call(this)
-           this,typr = 'child1'
+           this.type = 'child1'
        }
        Child3.prototype = new Parent3()
     </script>
@@ -55,7 +58,7 @@
        }
        function Child4() {
            Parent4.call(this)
-           this,typr = 'child1'
+           this.typr = 'child1'
        }
        Child4.prototype = Parent4.prototype
         // 缺点,constructor指向一个，无法区分
@@ -71,7 +74,7 @@
            this.name = 'parent1'
        }
        function Child5() {
-           this,typr = 'child1'
+           this.typr = 'child1'
        }
        Child5.prototype = Object.create(Parent5.prototype);
        Child5.prototype.constructor = Child5  

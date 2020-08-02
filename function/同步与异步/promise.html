@@ -14,6 +14,7 @@
         </ul>
     </div>
     <script>
+        // 无法处理异步的resolve
         function MyPromise(constructor) {
             let self = this
             self.status = 'padding'
@@ -47,6 +48,60 @@
                 case 'rejected':
                     onRejected(self.reason);
                     break;
+                default:
+                    break;
+            }
+        }
+        // v2.0 基于观察模式的实现
+        function myPromise2 (constructor) {
+            let self = this
+            this.status = 'pending';
+            this.value = undefined;
+            this.reason = undefined;
+            self.onFullfilledArray = []
+            self.onRejectedArray = []
+            function resolve(value) {
+                if(self.status == 'pending') {
+                    self.status = 'resolve'
+                    self.value = value
+                    self.onFullfilledArray.forEach(f => {
+                        f(self.value)
+                    });
+                }
+            }
+            function reject(reason) {
+                if(self.status == 'pending') {
+                    self.status = 'reject'
+                    self.reason = reason
+                    self.onRejectedArray.forEach(f => {
+                        f(self.reason)
+                    });
+                }
+            }
+            try {
+                constructor(resolve, reject)
+            } catch (e) {
+                reject(e)
+            }
+        }
+        myPromise2.prototype.then = function (onFullfilled, onRejected){
+            let self = this;
+            let status = this.status;
+            switch(status) {
+                case 'pending': 
+                    self.onFullfilledArray.push(() => {
+                        onFullfilled(self.value)
+                    })
+                    self.onRejectedArray.push(() => {
+                        onRejected(self.reason)
+                    })
+                    break;
+                case 'resolve':
+                    onFullfilled(self.value);
+                    break
+                case 'reject':
+                    onRejected(self.reason)
+                    break
                 default:
                     break;
             }

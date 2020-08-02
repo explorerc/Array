@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多继承</title>
+</head>
+<body>
+    <script>
+        function Parent1() {
+            this.parent1 = 'Prent1'
+        }
+        Parent1.prototype.walk = function() {
+            alert('Parent1 walk')
+        }
+        function Parent2() {
+            this.parent2 = 'Parent2'
+        }
+        Parent2.prototype.say = function() {
+            alert('Parent2 say')
+        }
+        function Child() {
+            Parent1.call(this)
+            Parent2.call(this)
+            this.child = 'child'
+        }
+        Object.assign(Child.prototype, Parent2.prototype, Parent1.prototype)
+        Child.prototype.constructor = Child
+
+    </script>
+    
+</body>
+</html>
