@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扁平化</title>
+</head>
+<body>
+    <script>
+        function flatter(arr, n = Infinity){
+            return arr.reduce((a, b) => {
+                if(Array.isArray(b) && n > 0) {
+                    return [...a, ...flatter(b, n - 1)]
+                } else {
+                    return [...a, b]
+                }
+            }, [])
+        }
+        console.log(flatter([1,[2,[4,[5]]], 6], 2))
+    </script>
+
+    <script>
+        const flat = (ar, num = Infinity) => {
+            if (!toArr(ar)) return []
+            const result = []
+            const isArray = (item) => Object.prototype.toString.call(item) == '[object Array]'
+            let i = 0
+            const toArr = (arr) => {
+                arr.map((element, index, array) => {
+                    if (isArray(element)) {
+                        if (i < num) {
+                            i++
+                            toArr(element)
+                        } else {
+                            index == array.length - 1 ? (i = 0) : null
+                            result.push(element)
+                        }
+                    } else {
+                        index == array.length - 1 ? (i = 0) : null
+                        result.push(element)
+                    }
+                })
+            }
+            toArr(ar)
+            return result
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宽度</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            margin: 30px;
+            border: 10px solid black;
+            background-color: red;
+        }
+        .box2 {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            margin: 30px;
+            border: 10px solid black;
+            box-sizing: border-box;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        let box1 = document.getElementsByClassName('box1')[0];
+        console.log('content-box=========', box1.style.width)
+        console.log('content-box=========', window.getComputedStyle(box1).width, window.getComputedStyle(box1).boxSizing)
+        console.log('content-box=clientWidth========', box1.clientWidth);
+        console.log('content-box=offsetWidth========', box1.offsetWidth);
+
+
+        let box2 = document.getElementsByClassName('box2')[0];
+        console.log('border-box============', box2.style.width);
+        console.log('border-box============', window.getComputedStyle(box2).width);
+        console.log('border-box=clientWidth===========', box2.clientWidth);
+        console.log('border-box=offsetWidth===========', box2.offsetWidth);
+    </script>
+</body>
+</html>

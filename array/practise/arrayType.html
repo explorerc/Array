@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稀疏数组和密数组</title>
+</head>
+<body>
+    <script>
+        {
+            var arr1 = [1,2,3];
+            arr1[10] = 11;
+            let result1 = arr1.filter(e => e === undefined);
+            console.log('稀疏数组和密数组1========', result1);
+            console.log('稀疏数组和密数组1========', arr1);
+            // 解析： 中间的索引并不在数组中，所以操作会跳过这些索引
+
+            
+
+        }
+    </script>
+</body>
+</html>

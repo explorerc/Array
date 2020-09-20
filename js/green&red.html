@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红绿灯</title>
+    <style>
+        .lump {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #999;
+        }
+        .red.active {
+            background-color: red;
+        }
+        .green.active {
+            background-color: green;
+        }
+        .yellow.active {
+            background-color: yellow;
+        }
+        #demo.red {
+            background-color: red;
+        }
+        #demo.green {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul class="wrap">
+        <li class="lump red"></li>
+        <li class="lump green"></li>
+        <li class="lump yellow"></li>
+    </ul>
+    <div class="lump" id="demo"></div>
+    <script>
+        function Test(nn) {
+            this.nn = document.getElementById(nn);
+        }
+
+        Test.prototype.turn = function() {
+            var demo = this.nn;
+
+            (function turnColoe() {
+                var that = this;
+                setTimeout(function(namee) {
+                    demo.classList.remove('red');
+                    demo.classList.add('green')
+                    console.log('green');
+                    setTimeout(function(namee) {
+                        demo.classList.remove('green');
+                        demo.classList.add('red')
+                        setTimeout(turnColoe(), 0);
+                    }, 3000)
+                }, 3000)
+            })()
+        }
+
+
+        function ele(n) {
+            var test = new Test(n);
+            return test;
+        }
+
+        ele('demo').turn();
+    </script>
+</body>
+</html>
